@@ -1,0 +1,44 @@
+<section id="users-component">
+  <section class="add-users">
+    <div class="title align-center">
+      <hr><h1><span class="fa fa-plus"></span> Add users</h1><hr>
+    </div>
+    <mat-card>
+      <div *ngIf="error" class="error">
+        {{error}}
+      </div>
+      <form [formGroup]="usersForm" #formDirective="ngForm" (ngSubmit)="addNewUser(formDirective)">
+        <mat-form-field hideRequiredMarker="false">
+          <input required hideRequiredMarker="false" formControlName="usersName" matInput placeholder="Users Name">
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker="false">
+          <input type="number" required hideRequiredMarker="false" formControlName="usersAge" matInput placeholder="Users Age">
+        </mat-form-field>
+        <div class="submit align-center">
+          <button type="reset" (click)="resetForm()" mat-button class="reset">Reset</button>
+          <button [disabled]="!usersForm.valid" mat-raised-button class="confirm" color="primary"><span class="fa fa-user-plus"></span> Add</button>
+        </div>
+      </form>
+    </mat-card>
+  </section>
+  <section class="users-list">
+    <div class="title align-center">
+      <hr><h1><span class="fa fa-list"></span> Users List</h1><hr>
+    </div>
+    <div *ngIf="users.length else noUsers" class="list">
+        <div *ngFor="let user of users" class="user">
+            <mat-card class="flex row align-vertical-center">
+              <div><span class="fa fa-user-circle"></span></div>
+              <div>id: <b class="accent">{{user.id}}</b></div>
+              <div>Name: <b>{{user.name}}</b></div>
+              <div>Age: <b>{{user.age}}</b></div>
+            </mat-card>
+          </div>
+    </div>
+      <ng-template #noUsers>
+        <div class="align-center no-users">
+            <h1>No Users yet</h1>
+        </div>
+      </ng-template>
+  </section>
+</section>

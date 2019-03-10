@@ -1,0 +1,46 @@
+#blockchain-component {
+    .list-section {
+        .list {
+            .item {
+                margin-bottom: 10px;
+                .number {
+                    h1 {
+                        margin: 0;
+                        font-size: 150%;
+                    }
+                }
+                .primary {
+                    filter: brightness(1.7)
+                }
+                .body {
+                    .transactions {
+                        margin-top: 10px;
+                        .show-button {
+                            margin-bottom: 10px;
+                            a {
+                                color: #007bff;
+                                text-decoration: underline;
+                                cursor: pointer;
+                            }
+                        }
+                        .list {
+                            border-radius: 5px;
+                            overflow: hidden;
+                            display: none;
+                            opacity: 0;
+                            transition: opacity 1s ease-in-out;
+                            &.show {
+                                opacity: 1;
+                                padding: 5px;
+                                display: block;
+                            }
+                            h4 {
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

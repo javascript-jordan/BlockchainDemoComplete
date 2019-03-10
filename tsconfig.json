@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es3",
+    "module": "commonjs",
+    "lib": ["dom", "es2015", "esnext"],
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outDir": "./dist/server",
+    "sourceMap": false
+  },
+  "include": [
+      "src/server/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "src/public",
+      "**/*.spec.ts"
+  ]
+}

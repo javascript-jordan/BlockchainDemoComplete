@@ -1,0 +1,61 @@
+#wallets-component {
+    .add-wallets {
+        mat-card {
+            form {
+                mat-form-field {
+                    width: 100%;
+                }
+                .submit {
+                    > :first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .list-wallets {
+        .list {
+            .user {
+                margin-bottom: 10px;
+                &:last-child {
+                    margin: 0;
+                }
+            }
+            mat-card {
+                display: flex!important;
+                .icon {
+                    font-size: 150%;
+                    margin-right: 10px;
+                }
+                .name {
+                    h1 {
+                        margin: 0;
+                        border-bottom: 2px solid #69f0ae;
+                    }
+                }
+                .currencies {
+                    justify-content: space-between;
+                    .currency {
+                        margin-right: 15px;
+                        h4 {
+                            margin: 0;
+                            b {
+                                color: #69f0ae;
+                            }
+                        }
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .no-users {
+            text-align: center;
+            opacity: 0.7;
+            h1 {
+                margin: 0;
+            }
+        }
+    }
+}

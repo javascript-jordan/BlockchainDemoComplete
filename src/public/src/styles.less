@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/font-awesome/less/font-awesome.less";
+@import "./assets/css/flex.less";
+@primary: #7b1fa2;
+@accent: #69f0ae;
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: inherit;
+}
+::-webkit-scrollbar-thumb {
+    background: @primary;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html body blockchain-root {
+    .flex;
+    .column;
+    height: 100%;
+    width: 100%;
+    > :last-child {
+        flex-grow: 1;
+        padding: 8px;
+        overflow-y: auto;
+    }
+}
+.accent {
+    color: @accent;
+}
+.primary {
+    color: @primary;
+}
+
+.align-center {
+    text-align: center;
+}
+.background-accent {
+    background-color: @accent;
+}
+.background-primary {
+    background-color: @primary;
+}
+.title {
+    .flex;
+    .row;
+    .align-vertical-center;
+    font-weight: bolder;
+    font-size: 120%;
+    hr {
+        .grow;
+        &:first-child {
+            margin-right: 10px;
+        }
+        &:last-child {
+            margin-left: 10px;
+        }
+    }
+}

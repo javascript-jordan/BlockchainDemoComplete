@@ -1,0 +1,55 @@
+<section id="blockchain-component">
+  <section class="list-section">
+    <div class="title">
+      <hr><h1><span class="fa fa-cubes"></span> Blockchain</h1><hr>
+    </div>
+    <div class="list">
+      <mat-card *ngFor="let block of blocks; let i = index;" class="item">
+        <div class="header flex row align-vertical-center align-horizontal-space-between">
+          <div class="number">
+            <h1><b>Block <span class="accent">{{i + 1}}</span> <i *ngIf="i === 0"> - <u>Genesis Block</u></i> </b></h1>
+          </div>
+          <div class="icon">
+            <span class="fa fa-cube"></span>
+          </div>
+        </div>
+        <hr>
+        <div class="body">
+          <div class="info flex column">
+            <span>Block height <b>{{block.height}}</b></span>
+            <span>Block timestamp <b>{{getDate(block.header.timestamp)}}</b></span>
+            <span>Block Hash <b class="primary">{{block.hash}}</b></span>
+            <span>Previous Block Hash <b class="accent">{{block.header.previousBlockHash || "null"}}</b></span>
+          </div>
+          <div class="transactions">
+            <div (click)="block.showTransactions = !block.showTransactions" class="show-button">
+              <a>{{block.showTransactions ? "Hide Transactions" : "Show Transactions"}}</a>
+            </div>
+            <div class="list mat-app-background" [ngClass]="{show: block.showTransactions}">
+              <div *ngFor="let transaction of block.transactions" class="transaction">
+                <div [ngSwitch]="transaction.type">
+                  <div *ngSwitchCase="'users'" class="user flex row align-vertical-center align-horizontal-space-between">
+                    <span><h4>Added User <b class="accent">{{transaction.data.name}}</b></h4></span>
+                    <span class="fa fa-user"></span>
+                  </div>
+                  <div *ngSwitchCase="'wallets'" class="wallets flex row align-vertical-center align-horizontal-space-between">
+                    <span><h4>Funded wallet ID <b class="accent">{{transaction.data.owner}}</b> with <b class="accent">{{transaction.data.amount}}</b> of <b class="accent">{{transaction.data.currency}}</b></h4></span>
+                    <span class="fa fa-money"></span>
+                  </div>
+                  <div *ngSwitchCase="'trades'" class="trades flex row align-vertical-center align-horizontal-space-between">
+                    <span><h4>User ID <b class="accent">{{transaction.data.sender.id}}</b> sent User ID <b class="accent">{{transaction.data.receiver.id}}</b> amount of <b class="accent">{{transaction.data.sender.amount}}</b> 
+                      of <b class="accent">{{transaction.data.sender.currency}}</b> in exchange for <b class="accent">{{transaction.data.receiver.amount}}</b> of <b class="accent">{{transaction.data.receiver.currency}}</b></h4></span>
+                    <span class="fa fa-exchange"></span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!block.transactions.length" class="align-center no-transactions">
+                <h5>No transaction records</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </section>
+</section>

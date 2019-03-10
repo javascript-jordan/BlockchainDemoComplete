@@ -1,0 +1,18 @@
+<nav>
+  <mat-toolbar color="primary" class="flex row wrap align-vertical-center">
+    <div class="branding shrink flex column align-horizontal-center" [ngClass]="{'active': isOnHomePage}">
+      <button (click)="route('/home')" mat-button><h1><b>Blockchain Demo</b></h1></button>
+      <div class="active-indicator">
+          
+      </div>
+    </div>
+    <div class="items grow flex row align-vertical-center align-horizontal-end">
+      <div *ngFor="let item of navItems" class="item shrink basis flex column align-horizontal-center" [ngClass]="{'active': item.active}">
+        <button (click)=route(item.link) mat-button><b><span class="fa accent" [ngClass]="item.icon"></span> {{item.name}}</b></button>
+        <div class="active-indicator">
+
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+</nav>

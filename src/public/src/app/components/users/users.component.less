@@ -1,0 +1,45 @@
+#users-component {
+    .add-users {
+        mat-card {
+            .error {
+                color: red;
+                margin: 10px 0;
+            }
+            form {
+                mat-form-field {
+                    width: 100%;
+                }
+                .submit {
+                    text-align: right;
+                    > :first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+    .users-list {
+        mat-card {
+            display: flex!important;
+            > div {
+                width: fit-content;
+                margin-right: 10px;
+                .fa {
+                    font-size: 200%;
+                }
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+        .user:not(:last-child) {
+            margin-bottom: 10px;
+        }
+        .no-users {
+            opacity: 0.57;
+            h1 {
+                margin-top: 0;
+            }
+        }
+    }
+}

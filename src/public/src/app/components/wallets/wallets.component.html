@@ -1,0 +1,59 @@
+<section id="wallets-component">
+  <section class="add-wallets">
+    <div class="title">
+      <hr><h1><span class="fa fa-money"></span> Fund Wallets</h1><hr>
+    </div>
+    <mat-card>
+      <form *ngIf="!resetting" [formGroup]="walletForm" #formDirective="ngForm" (ngSubmit)="fundWallet(formDirective)">
+          <mat-form-field>
+              <mat-label>User</mat-label>
+              <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedUser" #userSelect>
+                <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Currency</mat-label>
+                <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedCurrency" #currencySelect>
+                  <mat-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field hideRequiredMarker="false">
+                  <input type="number" required hideRequiredMarker="false" formControlName="currencyAmount" matInput placeholder="Amount">
+                </mat-form-field>
+              <div class="submit flex row align-vertical-center align-horizontal-end">
+                <button (click)="resetForm(formDirective)" type="reset" class="reset" mat-button>Reset</button>
+                <button (click)="fundWallet(formDirective)" class="confirm" color="primary" mat-raised-button [disabled]="!selectedCurrency || !selectedUser || !walletForm.controls.currencyAmount.valid" ><span class="fa fa-plus"></span> Fund</button>
+              </div>
+      </form>
+    </mat-card>
+  </section>
+  <section class="list-wallets">
+    <div class="title">
+      <hr><h1><span class="fa fa-lock"></span> User Wallets</h1><hr>
+    </div>
+    <div *ngIf="(users.length && wallets.length) else noWallets" class="list">
+      <div *ngFor="let user of users" class="user">
+        <mat-card class="flex row align-vertical-center">
+          <div class="icon-name grow flex row align-vertical-center">
+            <div class="icon">
+              <span class="fa fa-user-circle"></span>
+            </div>
+            <div class="name">
+              <h1><b>{{user.name}}</b></h1>
+            </div>
+          </div>
+          <div class="currencies grow flex row align-vertical-center">
+            <div *ngFor="let currency of user.currencies" class="currency">
+              <h4>{{currency.currency}}  -  <b>$ {{currency.amount}}</b></h4>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <ng-template #noWallets>
+      <div class="no-users">
+        <h1>No Users or Wallets</h1>
+      </div>
+    </ng-template>
+  </section>
+</section>

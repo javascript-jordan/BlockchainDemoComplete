@@ -1,0 +1,81 @@
+<section id="exchange-component">
+  <section class="trade-form">
+    <div class="title">
+      <hr>
+      <h1><span class="fa fa-handshake-o"></span> Trade</h1>
+      <hr>
+    </div>
+    <div class="error" *ngIf="error">{{error}}</div>
+    <mat-card class="row">
+      <form [formGroup]="tradeForm" #formDirective="ngForm">
+        <div class="fields flex row align-vertical-center">
+          <div class="from grow">
+            <mat-form-field>
+              <mat-label>From User</mat-label>
+              <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="fromId">
+                <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Currency</mat-label>
+              <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="fromCurrency">
+                <mat-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input type="number" required hideRequiredMarker="false" formControlName="fromCurrencyAmount" matInput
+                placeholder="Amount">
+            </mat-form-field>
+          </div>
+          <div class="icon">
+            <h1><span class="fa fa-exchange"></span></h1>
+          </div>
+          <div class="to grow">
+            <mat-form-field>
+              <mat-label>To User</mat-label>
+              <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="toId">
+                <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Currency</mat-label>
+              <mat-select required [ngModelOptions]="{standalone: true}" [(ngModel)]="toCurrency">
+                <mat-option *ngFor="let currency of currencies" [value]="currency.id">{{currency.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <input type="number" required hideRequiredMarker="false" formControlName="toCurrencyAmount" matInput
+                placeholder="Amount">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="submit flex row align-vertical-center align-horizontal-end">
+          <button (click)="resetForm(formDirective)" type="reset" class="reset" mat-button>Reset</button>
+          <button (click)="submitTrade(formDirective)" color="primary" [disabled]="!isFormValid()" mat-raised-button>Confirm</button>
+        </div>
+      </form>
+    </mat-card>
+  </section>
+  <section class="users">
+    <div class="title">
+      <hr><h1><span class="fa fa-users"></span> Users</h1><hr>
+    </div>
+    <div *ngIf="!users.length" class="align-center no-users">
+      <h3>No Users Yet</h3>
+    </div>
+    <blockchain-user-list [users]="users"></blockchain-user-list>
+  </section>
+  <section class="trades-list">
+    <div class="title">
+      <hr><h1><span class="fa fa-briefcase"></span> Trades List</h1><hr>
+    </div>
+    <div class="list" *ngIf="users.length">
+        <div *ngFor="let trade of trades" class="trade mat-elevation-z6">
+          <h3> <span class="fa fa-check"> </span> <b class="accent"> {{trade.sender.name}}</b> sent <b class="accent">{{trade.receiver.name}}</b> <u>{{trade.sender.amount}} {{trade.sender.currency}}</u> in exchange for <u>{{trade.receiver.amount}} {{trade.receiver.currency}}</u></h3>
+        </div>
+    </div>
+    <div *ngIf="!trades.length" class="align-center no-users">
+        <h3>No Trades Yet</h3>
+      </div>
+  </section>
+</section>

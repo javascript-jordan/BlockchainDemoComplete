@@ -1,0 +1,15 @@
+<div class="users-list flex row align-vertical-center wrap align-horizontal-center">
+  <div class="user flex column align-horizontal-center mat-elevation-z6" *ngFor="let user of users">
+    <div class="icon flex align-horizontal-space-around align-vertical-center">
+      <span class="fa fa-user-circle">
+
+      </span>
+      <span class="name">
+        <b>{{user.name}}</b>
+      </span>
+    </div>
+    <div class="currency flex row align-horizontal-space-between align-vertical-center" *ngFor="let currency of user.currency">
+      <span>{{currency.currency}}:</span> <span>$ {{currency.amount}}</span>
+    </div>
+  </div>
+</div>
